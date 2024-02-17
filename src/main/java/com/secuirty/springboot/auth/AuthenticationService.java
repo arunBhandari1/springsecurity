@@ -22,13 +22,7 @@ public class AuthenticationService {
     @Autowired
     private JwtService jwtService;
 
-    public AuthenticationResponse authenticate(AuthenticateReqest request) {
-       provider.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
-       userRepository.findByEmail(request.getEmail()).orElseThrow();
-       return null;
-    }
 
-     @Autowired
     private AuthenticationProvider provider;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder().email(request.getEmail()).firstName(request.getFirstName())
@@ -42,4 +36,12 @@ public class AuthenticationService {
         return  AuthenticationResponse.builder().token(jwtToken).build();
 
     }
+
+            //authenticate
+    public AuthenticationResponse authenticate(AuthenticateReqest request) {
+       provider.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
+       userRepository.findByEmail(request.getEmail()).orElseThrow();
+       return null;
+    }
+
 }
