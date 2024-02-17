@@ -33,7 +33,7 @@ public class AuthenticationService {
         return  AuthenticationResponse.builder().token(jwtToken).build();
 
     }
-
+            //authenticate
     public AuthenticationResponse authenticate(AuthenticateReqest request) {
        provider.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()));
        userRepository.findByEmail(request.getEmail()).orElseThrow();
