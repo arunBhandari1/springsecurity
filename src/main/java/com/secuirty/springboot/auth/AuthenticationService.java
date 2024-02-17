@@ -22,7 +22,7 @@ public class AuthenticationService {
     @Autowired
     private JwtService jwtService;
 
-     @Autowired
+
     private AuthenticationProvider provider;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder().email(request.getEmail()).firstName(request.getFirstName())
